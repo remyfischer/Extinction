@@ -6,6 +6,7 @@
 package extinction;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -17,6 +18,11 @@ public class Extinction {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        // Initialisation de menaces et d'espèces
+        
+        Scanner sc = new Scanner(System.in);
+        int reponse = 0;
         
         Menace deforestation = new Menace("déforestation");
         Menace surpeche = new Menace("sur-pêche");
@@ -34,6 +40,33 @@ public class Extinction {
         listeEspece.add(espece1);
         listeEspece.add(espece2);
         listeEspece.add(espece3);
+        
+        do{
+            
+        
+            System.out.println("---- Menu d'accueil ----");
+            System.out.println("1 - Menu Menace");
+            System.out.println("2 - Menu espèce");
+            System.out.println("3 - Menu extinction");
+            System.out.println("5 - Quitter");
+
+
+
+            do{
+
+                reponse = sc.nextInt();
+
+            } while(reponse != 1 && reponse != 2 && reponse != 3 && reponse != 5);
+
+            if(reponse == 1){
+
+
+
+            }
+        
+        } while (reponse != 5);
+        
+        
         
         extinction_menace_date(espece1, deforestation, 10, 2050);
         reset(espece1, espece2, espece3);
@@ -161,7 +194,7 @@ public class Extinction {
         
         _espece1.setNbIndividu(1000);
         _espece2.setNbIndividu(100000);
-        _espece2.setNbIndividu(700000000);
+        _espece3.setNbIndividu(700000000);
         
     }
     
