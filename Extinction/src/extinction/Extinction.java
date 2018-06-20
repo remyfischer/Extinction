@@ -27,7 +27,7 @@ public class Extinction {
         Espece espece2 = new Espece("Abeille", 100000, pesticide, "invertébré", "insecte");
         Espece espece3 = new Espece("Homo sapiens sapiens", 700000000, pollution, "vertébré", "mammifère");
         
-        //espece1.ajoutMenace(pollution);
+        espece1.ajoutMenace(pollution);
         
         ArrayList<Espece> listeEspece = new ArrayList();
         
@@ -36,15 +36,19 @@ public class Extinction {
         listeEspece.add(espece3);
         
         extinction_menace_date(espece1, deforestation, 10, 2050);
+        reset(espece1, espece2, espece3);
         extinction_menace(espece2, pesticide, 10);
+        reset(espece1, espece2, espece3);
         extinction_menace_date_liste(listeEspece, pollution, 10, 2050);
+        reset(espece1, espece2, espece3);
         
     }
     
     public static void extinction_menace_date(Espece _espece, Menace _menace, int _pourcentageMenace, int _annee){
         
         boolean menace = false;
-        int coefficientMenace = (100-_pourcentageMenace)/100;
+        double coefficientMenace = (100.0-_pourcentageMenace)/100.0;
+        double nombreIndividus;
         
         for(int i = 0 ; i < _espece.getListeMenace().size() ; i++){
             
@@ -56,7 +60,8 @@ public class Extinction {
             
             for(int i = 2018 ; i <= _annee ; i++){
                 
-                _espece.setNbIndividu(_espece.getNbIndividu()*coefficientMenace);
+                _espece.setNbIndividu(_espece.getNbIndividu()*coefficientMenace);               
+                
                 
             }
             
@@ -83,7 +88,7 @@ public class Extinction {
     public static void extinction_menace(Espece _espece, Menace _menace, int _pourcentageMenace){
         
         boolean menace = false;
-        int coefficientMenace = (100-_pourcentageMenace)/100;
+        double coefficientMenace = (100.0-_pourcentageMenace)/100.0;
         int annee = 2018;
         
         for(int i = 0 ; i < _espece.getListeMenace().size() ; i++){
@@ -117,11 +122,20 @@ public class Extinction {
     
     public static void extinction_menace_date_liste(ArrayList<Espece> _listeEspece, Menace _menace, int _pourcentageMenace, int _annee){
         
-        int coefficientMenace = (100-_pourcentageMenace)/100;
+        double coefficientMenace = (100.0-_pourcentageMenace)/100.0;
+        boolean menace;
         
         for(int i = 0 ; i < _listeEspece.size() ; i++){
             
-            if(_listeEspece.get(i).getListeMenace().get(i).equals(_menace)){
+            menace = false;
+            
+            for(int j = 0 ; j < _listeEspece.get(i).getListeMenace().size() ; j++){
+                
+                if(_listeEspece.get(i).getListeMenace().get(j).equals(_menace)) menace = true;
+                
+            }
+            
+            if(menace == true){
                 
                 for(int j = 2018 ; j <= _annee ; j++){
                 
@@ -140,6 +154,15 @@ public class Extinction {
             
         }      
     
+    }
+    
+    // fonction de reset pour réinitialiser les valeurs pour les trois espèces
+    public static void reset(Espece _espece1, Espece _espece2, Espece _espece3){
+        
+        _espece1.setNbIndividu(1000);
+        _espece2.setNbIndividu(100000);
+        _espece2.setNbIndividu(700000000);
+        
     }
     
 }

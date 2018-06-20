@@ -17,7 +17,7 @@ public class Espece {
     private static AtomicInteger genID = new AtomicInteger();
     private final int code;
     private String nom;
-    private int nbIndividu;
+    private double nbIndividu;
     private ArrayList<Menace> listeMenace;
     private String regne;
     private String embranchement;
@@ -27,16 +27,18 @@ public class Espece {
         this.code = genID.getAndIncrement();
         this.nom = "nom";
         this.nbIndividu = 0;
+        listeMenace = new ArrayList<>();
         this.regne = "regne";
         this.embranchement = "embranchement";
         
     }
     
-    public Espece (String _nom, int _nbIndividu, Menace _menace, String _regne, String _embranchement){
+    public Espece (String _nom, double _nbIndividu, Menace _menace, String _regne, String _embranchement){
         
         this.code = genID.getAndIncrement();
         this.nom = _nom;
         this.nbIndividu = _nbIndividu;
+        listeMenace = new ArrayList<>();
         this.listeMenace.add(_menace);
         this.regne = _regne;
         this.embranchement = _embranchement;
@@ -55,7 +57,7 @@ public class Espece {
         
     }
     
-    public int getNbIndividu(){
+    public double getNbIndividu(){
         
         return nbIndividu; 
         
@@ -86,7 +88,7 @@ public class Espece {
         
     }
     
-    public void setNbIndividu(int _nbIndividu){
+    public void setNbIndividu(double _nbIndividu){
         
         this.nbIndividu = _nbIndividu;
         
